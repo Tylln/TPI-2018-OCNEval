@@ -1,0 +1,102 @@
+package ch.ocn.OCNEval.data;
+
+public class Person {
+	private int id;
+	private String firstname;
+	private String name;
+	private String sector;
+	private String responsable;
+	private String function_ocn;
+	private String datefunction_ocn;
+	private String language;
+	private String validityDate;
+	
+	public Person() {
+		
+	}
+
+	public Person(int id, String firstname, String name, String sector, String responsable, String function_ocn,
+			String datefunction_ocn, String language, String validityDate) {
+		this.id = id;
+		this.firstname = firstname;
+		this.name = name;
+		this.sector = sector;
+		this.responsable = responsable;
+		this.function_ocn = function_ocn;
+		this.datefunction_ocn = datefunction_ocn;
+		this.language = language;
+		this.validityDate = validityDate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getfirstname() {
+		return firstname;
+	}
+
+	public void setfirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSector() {
+		return sector;
+	}
+
+	public void setSector(String sector) {
+		this.sector = sector;
+	}
+
+	public String getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
+	}
+
+	public String getfunction_ocn() {
+		return function_ocn;
+	}
+
+	public void setfunction_ocn(String function_ocn) {
+		this.function_ocn = function_ocn;
+	}
+
+	public String getDatefunction_ocn() {
+		return datefunction_ocn;
+	}
+
+	public void setDatefunction_ocn(String datefunction_ocn) {
+		this.datefunction_ocn = datefunction_ocn;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getValidityDate() {
+		return validityDate;
+	}
+
+	public void setValidityDate(String validityDate) {
+		this.validityDate = validityDate;
+	}
+}

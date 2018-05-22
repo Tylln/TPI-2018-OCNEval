@@ -2,7 +2,7 @@ package ch.ocn.OCNEval.data;
 
 public class Person {
 	private int id;
-	private String firstName;
+	private String firstname;
 	private String name;
 	private String sector;
 	private String responsable;
@@ -15,10 +15,10 @@ public class Person {
 		
 	}
 
-	public Person(int id, String firstName, String name, String sector, String responsable, String function,
+	public Person(int id, String firstname, String name, String sector, String responsable, String function,
 			String dateFunction, String language, String validityDate) {
 		this.id = id;
-		this.firstName = firstName;
+		this.firstname = firstname;
 		this.name = name;
 		this.sector = sector;
 		this.responsable = responsable;
@@ -36,12 +36,12 @@ public class Person {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getName() {
