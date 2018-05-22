@@ -1,0 +1,37 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+import java.sql.SQLException;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+@Path("profiles")
+public class ProfileResource {
+	
+	private SqlRequest sqlRequest;
+	
+	public ProfileResource() {
+		
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfilesJson() throws SQLException {
+		return Response.status(Response.Status.OK).entity(sqlRequest.getProfiles("SELECT * FROM profile;")).build();
+	}
+	
+	/*
+	@GET
+	@Path("{profileId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
+		return Response.status(Response.Status.OK).entity(sqlRequest.getProfile("SELECT * FROM profile WHERE id=" + profileId + ";")).build();
+	}*/
+}

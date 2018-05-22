@@ -1,0 +1,12 @@
+package ch.ocn.OCNEval.sql;
+
+public class SqlRequest {
+	
+	private static String url = "jdbc:mysql://localhost:3306/ocneval?useSSL=false";
+	private static String user = "java";
+	private static String password = "123";
+	
+	public SqlRequest() {
+		
+	}
+}

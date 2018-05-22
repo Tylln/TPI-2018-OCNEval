@@ -2,17 +2,15 @@ package ch.ocn.OCNEval;
 
 import javax.ws.rs.Path;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
-import javax.websocket.server.PathParam;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import ch.ocn.OCNEval.data.Profile;
-import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
 
 @Path("profiles")
 public class ProfileResource {
@@ -21,36 +19,16 @@ public class ProfileResource {
 		
 	}
 	
-	public List<Profile> getProfiles() {
-		List<Section> sections = new ArrayList<Section>();
-		sections.add(new Section(1, "section 1", "description 1", "Path 1", "10.10.1000"));
-		List<Profile> profiles = new ArrayList<Profile>();
-		profiles.add(new Profile(1, "Administration", "Le profil Administration", "27.07.2018", sections));
-		profiles.add(new Profile(2, "Social", "Le profil Social", "01.01.2019", sections));
-		profiles.add(new Profile(3, "Encadrement", "Le profil Encadrement", "07.09.2020", sections));
-		
-		return profiles;
-	}
-	
-	public Profile getProfile(String id) {
-		List<Section> sections = new ArrayList<Section>();
-		sections.add(new Section(1, "section 1", "description 1", "Path 1", "10.10.1000"));
-		sections.add(new Section(2, "section 2", "description 2", "Path 2", "19.19.1999"));
-		Profile profile = new Profile(1, "Administration", "Le profil Administration", "27.07.2018", sections);
-		
-		return profile;
-	}
-	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfilesJson() {
-		return Response.status(Response.Status.OK).entity(getProfiles()).build();
+	public Response getProfilesJson() throws SQLException {
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles("SELECT * FROM profile;")).build();
 	}
 	
 	@GET
 	@Path("{profileId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfileJson(@PathParam("profileId") String profileId) {
-		return Response.status(Response.Status.OK).entity(getProfile(profileId)).build();
+	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile("SELECT * FROM profile WHERE id='" + profileId +"';")).build();
 	}
 }

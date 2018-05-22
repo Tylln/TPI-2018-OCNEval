@@ -1,0 +1,47 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+@Path("profiles")
+public class ProfileResource {
+	
+	private SqlRequest sqlRequest;
+	private static String url = "jdbc:mysql://localhost:3306/ocneval?useSSL=false";
+	private static String user = "java";
+	private static String password = "123";
+	
+	public ProfileResource() {
+		
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfilesJson() throws SQLException {
+		return Response.status(Response.Status.OK).entity(getProfiles("SELECT * FROM profile;")).build();
+	}
+	
+	@GET
+	@Path("{profileId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
+		return Response.status(Response.Status.OK).entity(sqlRequest.getProfile("SELECT * FROM profile WHERE id=" + profileId + ";")).build();
+	}
+}
