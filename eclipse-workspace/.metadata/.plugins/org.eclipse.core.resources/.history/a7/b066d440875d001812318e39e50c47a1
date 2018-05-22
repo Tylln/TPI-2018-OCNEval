@@ -1,0 +1,6 @@
+package ch.ocn.OCNEval;
+
+@Path("Staff")
+public class StaffResource {
+
+}

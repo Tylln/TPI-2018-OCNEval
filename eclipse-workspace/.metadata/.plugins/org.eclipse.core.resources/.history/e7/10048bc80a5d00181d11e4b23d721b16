@@ -1,0 +1,54 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.data.Section;
+
+@Path("profiles")
+public class ProfileResource {
+	
+	public ProfileResource() {
+		
+	}
+	
+	public List<Profile> getProfiles() {
+		List<Section> sections = new ArrayList<Section>();
+		sections.add(new Section(1, "section 1", "description 1", "Path 1", "10.10.1000"));
+		List<Profile> profiles = new ArrayList<Profile>();
+		profiles.add(new Profile(1, "Administration", "Le profil Administration", "27.07.2018", sections));
+		profiles.add(new Profile(2, "Social", "Le profil Social", "01.01.2019", sections));
+		profiles.add(new Profile(3, "Encadrement", "Le profil Encadrement", "07.09.2020", sections));
+		
+		return profiles;
+	}
+	
+	public Profile getProfile() {
+		List<Section> sections = new ArrayList<Section>();
+		sections.add(new Section(1, "section 1", "description 1", "Path 1", "10.10.1000"));
+		Profile profile = new Profile(1, "Administration", "Le profil Administration", "27.07.2018", sections);
+		
+		return profile;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfilesJson() {
+		return Response.status(Response.Status.OK).entity(getProfiles()).build();
+	}
+	
+	@Path("{profileId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfileJson(@PathParam("profileId") int profileId) {
+		return Response.status(Response.Status.OK).entity(getProfile(profileId)).build();
+	}
+}

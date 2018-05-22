@@ -1,0 +1,33 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import ch.ocn.OCNEval.data.Section;
+
+@Path("sections")
+public class SectionsApi {
+	
+	public List getSections() {
+		List<Section> sectionsList = new ArrayList();
+		sectionsList.add(new Section("Header", "slip", "path1", "10.10.1000"));
+		sectionsList.add(new Section("Header 2", "pute", "path 2", "23.23.4343"));
+		sectionsList.add(new Section("Profil", "pete", "path 3", "54.34.2243"));
+		sectionsList.add(new Section("Footer", "pouf", "path 4", "23.34.3422"));
+		
+		return sectionsList;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSectionsJson() {
+		return Response.status(Response.Status.OK).entity(new Section("Jérémy")).build();
+	}
+}

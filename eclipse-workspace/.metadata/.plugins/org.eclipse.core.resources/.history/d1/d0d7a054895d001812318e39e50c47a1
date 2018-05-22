@@ -1,0 +1,32 @@
+package ch.ocn.OCNEval.data;
+
+public class Person {
+	private int id;
+	private String firstName;
+	private String name;
+	private String sector;
+	private String responsable;
+	private String function;
+	private String dateFunction;
+	private String language;
+	private String validityDate;
+	
+	public Person() {
+		
+	}
+
+	public Person(int id, String firstName, String name, String sector, String responsable, String function,
+			String dateFunction, String language, String validityDate) {
+		this.id = id;
+		this.firstName = firstName;
+		this.name = name;
+		this.sector = sector;
+		this.responsable = responsable;
+		this.function = function;
+		this.dateFunction = dateFunction;
+		this.language = language;
+		this.validityDate = validityDate;
+	}
+	
+	
+}

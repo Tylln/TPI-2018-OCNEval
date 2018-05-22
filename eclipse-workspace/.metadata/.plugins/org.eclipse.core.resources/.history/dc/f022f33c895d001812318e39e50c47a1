@@ -1,0 +1,17 @@
+package ch.ocn.OCNEval.data;
+
+public class Person {
+	private int id;
+	private String firstName;
+	private String name;
+	private String sector;
+	private String responsable;
+	private String function;
+	private String dateFunction;
+	private String language;
+	private String validityDate;
+	
+	public Person() {
+		
+	}
+}

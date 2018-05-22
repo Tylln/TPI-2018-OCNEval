@@ -1,0 +1,15 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+@Path("Staff")
+public class StaffResource {
+
+	public StaffResource()  {
+		
+	}
+	
+	public saveStaff() {
+		
+	}
+}

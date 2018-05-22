@@ -1,0 +1,12 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+@Path("/sections")
+public class Sections {
+	
+	@GET
+	public String getSectionsJson() {
+		
+	}
+}

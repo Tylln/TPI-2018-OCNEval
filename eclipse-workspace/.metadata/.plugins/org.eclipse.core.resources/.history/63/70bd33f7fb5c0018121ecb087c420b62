@@ -1,0 +1,13 @@
+package ch.ocn.OCNEval.data;
+
+public class Sections {
+	int id;
+	String name;
+	String description;
+	String path;
+	String validityDate;
+	
+	public Sections() {
+		
+	}
+}

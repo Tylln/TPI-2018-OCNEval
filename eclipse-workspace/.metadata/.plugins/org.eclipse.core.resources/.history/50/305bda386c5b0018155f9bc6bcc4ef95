@@ -1,0 +1,17 @@
+package ch.ocn.OCNEval;
+
+public class pute {
+	private String name;
+
+	public pute(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}
