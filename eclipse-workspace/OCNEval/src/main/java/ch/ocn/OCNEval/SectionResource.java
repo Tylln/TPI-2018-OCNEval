@@ -2,6 +2,8 @@ package ch.ocn.OCNEval;
 
 import java.sql.SQLException;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -10,6 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+
+import ch.ocn.OCNEval.data.Section;
 import ch.ocn.OCNEval.sql.SqlRequest;
 
 @Path("sections")
@@ -30,16 +35,30 @@ public class SectionResource {
 	@GET
 	@Path("{sectionId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfileJson(@PathParam("sectionId") String sectionId) throws SQLException {
-		String request = "SELECT * FROM section WHERE id='" + sectionId + "';";
+	public Response getSectionJson(@PathParam("sectionId") String sectionId) throws SQLException {
+		String request = "SELECT * FROM section WHERE id='" + sectionId + "' AND valid = '1';";
 		
 		return Response.status(Response.Status.OK).entity(SqlRequest.requestSection(request)).build();
 	}
 	
 	@PUT
 	@Path("{sectionId}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response modifySection(@PathParam("sectionId") String sectionId, String sectionJson) throws SQLException {
+		Gson gson = new Gson();
+		Section section = gson.fromJson(sectionJson, Section.class);
+		String request = "UPDATE section SET name = '" + section.getName() + "', description = '" + section.getDescription() + "', validity_date = '" + section.getValidityDate() + "' WHERE id = '" + sectionId + "' AND valid = '1';";
+		SqlRequest.modifySection(request);
+		
+		return Response.status(200).build();
+	}
+	
+	@DELETE
+	@Path("{sectionId}")
+	public Response deleteSection(@PathParam("sectionId") String sectionId) throws SQLException {
+		String request = "UPDATE section SET valid = '0' WHERE id ='" + sectionId + "';";
+		SqlRequest.deleteSection(request);
+		
 		return Response.status(200).build();
 	}
 }

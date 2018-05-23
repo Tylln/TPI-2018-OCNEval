@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import javax.ws.rs.PathParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -32,11 +34,27 @@ public class ProfileResource {
 		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles(request)).build();
 	}
 	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addProfiles(String profileJson) throws SQLException {
+		Gson gson = new Gson();
+		Profile profile = gson.fromJson(profileJson, Profile.class);
+		if (profile.getValidityDate().equals("")) {
+			profile.setValidityDate("NULL");
+		} else {
+			profile.setValidityDate("'" + profile.getValidityDate() + "'");
+		}
+		String request = "INSERT INTO profile VALUES (NULL, '" + profile.getName() + "', '" + profile.getDescription() + "', " + profile.getValidityDate() + ", 1);";
+		SqlRequest.addProfile(request);
+		
+		return Response.status(200).build();
+	}
+	
 	@GET
 	@Path("{profileId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
-		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "';";
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
 		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "' AND section.id = profile_section_junction.section_id AND section.valid = '1';";
 		
 		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile(requestProfile, requestSections)).build();
@@ -44,12 +62,12 @@ public class ProfileResource {
 	
 	@PUT
 	@Path("{profileId}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException {
 		Gson gson = new Gson();
 		Profile profile = gson.fromJson(profileJson, Profile.class);
 		String request = "UPDATE profile SET name = '" + profile.getName() + "', description = '" + profile.getDescription() + "', validity_date = '" + profile.getValidityDate() + "' WHERE id = '" + profileId + "';";
-		SqlRequest.modifiyProfile(request);
+		SqlRequest.modifyProfile(request);
 		
 		return Response.status(200).build();
 	}

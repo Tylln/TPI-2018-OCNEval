@@ -64,6 +64,19 @@ public class SqlRequest {
 		return profiles;
 	}
 		
+	public static void addProfile(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);	
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
+	
 	public static Profile requestProfile(String requestProfile, String requestSections) throws SQLException {
 		Profile profile = null;
 		List<Section> sections = new ArrayList<Section>();
@@ -91,7 +104,7 @@ public class SqlRequest {
 		return profile;
 	}
 	
-	public static void modifiyProfile(String request) throws SQLException {
+	public static void modifyProfile(String request) throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {}
@@ -153,5 +166,31 @@ public class SqlRequest {
 		}
 		
 		return section;
+	}
+	
+	public static void modifySection(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);	
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
+	
+	public static void deleteSection(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+			
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);
+		){
+			preparedStatement.executeUpdate();
+		}
 	}
 }
