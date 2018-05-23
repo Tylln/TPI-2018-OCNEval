@@ -135,4 +135,23 @@ public class SqlRequest {
 			
 		return sections;
 	}
+	
+	public static Section requestSection(String request) throws SQLException {
+		Section section = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (	
+				Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(request);
+				ResultSet resultSet = preparedStatement.executeQuery();
+			){
+			if (resultSet.next()) {
+				section = new Section(1, resultSet.getString("name"), resultSet.getString("description"), resultSet.getString("path"), resultSet.getString("validity_date"));
+			}
+		}
+		
+		return section;
+	}
 }

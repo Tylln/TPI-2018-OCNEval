@@ -45,7 +45,7 @@ public class ProfileResource {
 	@PUT
 	@Path("{profileId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response modifiyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException {
+	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException {
 		Gson gson = new Gson();
 		Profile profile = gson.fromJson(profileJson, Profile.class);
 		String request = "UPDATE profile SET name = '" + profile.getName() + "', description = '" + profile.getDescription() + "', validity_date = '" + profile.getValidityDate() + "' WHERE id = '" + profileId + "';";

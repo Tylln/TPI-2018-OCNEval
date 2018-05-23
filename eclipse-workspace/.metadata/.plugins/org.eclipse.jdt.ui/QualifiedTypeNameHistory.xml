@@ -25,4 +25,5 @@
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.sql.SqlRequest"/>
 <fullyQualifiedTypeName name="com.google.gson.Gson"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Profile"/>
+<fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
 </qualifiedTypeNameHistroy>

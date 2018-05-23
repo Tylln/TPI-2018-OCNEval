@@ -1,0 +1,5 @@
+package ch.ocn.OCNEval.sql;
+
+public class SqlRequestProfile {
+
+}
