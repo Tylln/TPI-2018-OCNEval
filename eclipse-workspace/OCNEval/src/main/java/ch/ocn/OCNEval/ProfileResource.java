@@ -23,21 +23,26 @@ public class ProfileResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfilesJson() throws SQLException {
-		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles("SELECT * FROM profile WHERE valid='1';")).build();
+		String request = "SELECT * FROM profile WHERE valid='1';";
+		
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles(request)).build();
 	}
 	
 	@GET
 	@Path("{profileId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
-		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile("SELECT * FROM profile WHERE id='" + profileId + "';")).build();
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "';";
+		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "' AND section.id = profile_section_junction.section_id AND section.valid = '1';";
+		
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile(requestProfile, requestSections)).build();
 	}
 	
 	@DELETE
 	@Path("{profileId}")
 	public Response deleteProfile(@PathParam("profileId") String profileId) throws SQLException {
-		System.out.println("Test");
-		SqlRequest.deleteProfile("DELETE FROM profile WHERE id='" + profileId + "';");
+		String request = "UPDATE profile SET valid = '0' WHERE id='" + profileId + "';";
+		SqlRequest.deleteProfile(request);
 		
 		return Response.status(200).build();
 	}
