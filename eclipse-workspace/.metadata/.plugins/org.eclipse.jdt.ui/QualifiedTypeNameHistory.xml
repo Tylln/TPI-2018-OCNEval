@@ -15,8 +15,6 @@
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Profile"/>
-<fullyQualifiedTypeName name="com.google.gson.Gson"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Person"/>
 <fullyQualifiedTypeName name="javax.ws.rs.GET"/>
 <fullyQualifiedTypeName name="javax.enterprise.inject.Produces"/>
@@ -25,4 +23,6 @@
 <fullyQualifiedTypeName name="javax.ws.rs.core.Response.StatusType"/>
 <fullyQualifiedTypeName name="javax.ws.rs.core.Response.Status"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.sql.SqlRequest"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Profile"/>
 </qualifiedTypeNameHistroy>

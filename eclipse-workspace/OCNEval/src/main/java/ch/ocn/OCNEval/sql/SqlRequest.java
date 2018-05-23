@@ -22,6 +22,26 @@ public class SqlRequest {
 		
 	}
 	
+	public static void saveStaff(Person staff[]) throws SQLException {
+		
+		int i = 0;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (
+				Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatementTruncate = connection.prepareStatement("TRUNCATE TABLE person;");
+			){
+				preparedStatementTruncate.executeUpdate();
+				for (i = 0; i < staff.length; i++) {
+					PreparedStatement preparedStatementSave = connection.prepareStatement("INSERT INTO person VALUES (" + staff[i].getId() + ", '" + staff[i].getFirstname() + "', '" + staff[i].getName() + "', '" + staff[i].getSector() + "', '" + staff[i].getResponsable() + "', '" + staff[i].getFunction() + "', '" + staff[i].getDateFunction() + "', '" + staff[i].getLanguage() + "', " + staff[i].getValidityDate() + ");");
+					preparedStatementSave.executeUpdate();
+				}
+		}
+	}
+	
 	//Code récupéré en partie sur https://stackoverflow.com/questions/14853508/returning-a-resultset
 	public static List<Profile> requestProfiles(String request) throws SQLException {
 		List<Profile> profiles = new ArrayList<Profile>();
@@ -29,9 +49,7 @@ public class SqlRequest {
 			
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-				
-		}
+		} catch (ClassNotFoundException e) {}
 			
 		try (	
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -52,9 +70,7 @@ public class SqlRequest {
 			
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-				
-		}
+		} catch (ClassNotFoundException e) {}
 			
 		try (
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -75,12 +91,23 @@ public class SqlRequest {
 		return profile;
 	}
 	
+	public static void modifiyProfile(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);	
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
+	
 	public static void deleteProfile(String request) throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-				
-		}
+		} catch (ClassNotFoundException e) {}
 			
 		try (
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -90,35 +117,11 @@ public class SqlRequest {
 		}
 	}
 	
-	public static void saveStaff(Person staff[]) throws SQLException {
-		
-		int i = 0;
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			
-		}
-		
-		try (
-				Connection connection = DriverManager.getConnection(url, user, password);
-				PreparedStatement preparedStatementTruncate = connection.prepareStatement("TRUNCATE TABLE person;");
-			){
-				preparedStatementTruncate.executeUpdate();
-				for (i = 0; i < staff.length; i++) {
-					PreparedStatement preparedStatementSave = connection.prepareStatement("INSERT INTO person VALUES (" + staff[i].getId() + ", '" + staff[i].getFirstname() + "', '" + staff[i].getName() + "', '" + staff[i].getSector() + "', '" + staff[i].getResponsable() + "', '" + staff[i].getFunction() + "', '" + staff[i].getDateFunction() + "', '" + staff[i].getLanguage() + "', " + staff[i].getValidityDate() + ");");
-					preparedStatementSave.executeUpdate();
-				}
-		}
-	}
-	
 	public static List<Section> requestSections(String request) throws SQLException {
 		List<Section> sections = new ArrayList<Section>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-				
-		}
+		} catch (ClassNotFoundException e) {}
 			
 		try (	
 			Connection connection = DriverManager.getConnection(url, user, password);

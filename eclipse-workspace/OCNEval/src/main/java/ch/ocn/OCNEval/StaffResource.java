@@ -20,11 +20,10 @@ public class StaffResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveStaff(String personString) throws Exception {
+	public Response saveStaff(String staffJson) throws Exception {
 		//https://stackoverflow.com/questions/9598707/gson-throwing-expected-begin-object-but-was-begin-array/9598988#9598988
 		Gson gson = new Gson();
-		Person[] staff = gson.fromJson(personString, Person[].class);
-		System.out.println(staff[1].getDateFunction());
+		Person[] staff = gson.fromJson(staffJson, Person[].class);
 		SqlRequest.saveStaff(staff);
 		
 		return Response.status(200).build();
