@@ -24,6 +24,7 @@ public class StaffResource {
 		//https://stackoverflow.com/questions/9598707/gson-throwing-expected-begin-object-but-was-begin-array/9598988#9598988
 		Gson gson = new Gson();
 		Person[] staff = gson.fromJson(personString, Person[].class);
+		System.out.println(staff[1].getDateFunction());
 		SqlRequest.saveStaff(staff);
 		
 		return Response.status(200).build();

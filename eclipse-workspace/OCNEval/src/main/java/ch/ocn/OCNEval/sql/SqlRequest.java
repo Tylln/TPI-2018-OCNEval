@@ -85,12 +85,30 @@ public class SqlRequest {
 		try (
 				Connection connection = DriverManager.getConnection(url, user, password);
 				PreparedStatement preparedStatementTruncate = connection.prepareStatement("TRUNCATE TABLE person;");
-				PreparedStatement preparedStatementSave = connection.prepareStatement("INSERT INTO person VALUES (" + staff[i].getId() + ", '" + staff[i].getFirstname() + "', '" + staff[i].getName() + "', '" + staff[i].getSector() + "', '" + staff[i].getResponsable() + "', '" + staff[i].getFunction() + "', '" + staff[i].getDateFunction() + "', '" + staff[i].getLanguage() + "', '" + staff[i].getValidityDate() + "');");
 			){
 				preparedStatementTruncate.executeUpdate();
 				for (i = 0; i < staff.length; i++) {
+					System.out.println(staff[i].getFirstname());
+					System.out.println(staff[i].getDateFunction());
+					PreparedStatement preparedStatementSave = connection.prepareStatement("INSERT INTO person VALUES (" + staff[i].getId() + ", '" + staff[i].getFirstname() + "', '" + staff[i].getName() + "', '" + staff[i].getSector() + "', '" + staff[i].getResponsable() + "', '" + staff[i].getFunction() + "', '" + staff[i].getDateFunction() + "', '" + staff[i].getLanguage() + "', " + staff[i].getValidityDate() + ");");
 					preparedStatementSave.executeUpdate();
 				}
+		}
+	}
+	
+	public static void deleteProfile(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+				
+		}
+			
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);
+		){
+			System.out.println(request);
+			preparedStatement.executeUpdate();
 		}
 	}
 }

@@ -93,6 +93,13 @@ public class Person {
 	}
 
 	public String getValidityDate() {
+		if (validityDate == null) {
+			validityDate = "NULL";
+		}
+		else {
+			validityDate = "'" + validityDate + "'";
+		}
+		
 		return validityDate;
 	}
 
