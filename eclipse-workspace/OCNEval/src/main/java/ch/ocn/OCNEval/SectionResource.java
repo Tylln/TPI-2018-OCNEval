@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -58,6 +59,19 @@ public class SectionResource {
 	public Response deleteSection(@PathParam("sectionId") String sectionId) throws SQLException {
 		String request = "UPDATE section SET valid = '0' WHERE id ='" + sectionId + "';";
 		SqlRequest.deleteSection(request);
+		
+		return Response.status(200).build();
+	}
+	
+	@POST
+	@Path("{profileId}")
+	public Response addSectionToProfile(@PathParam("profileId") String profileId, String sectionNameJson) throws SQLException {
+		Gson gson = new Gson();
+		Section section = gson.fromJson(sectionNameJson, Section.class);
+		String requestSectionId = "SELECT * FROM section WHERE name='" + section.getName() + "';";
+		Section section2 = SqlRequest.requestSection(requestSectionId);
+		String requestBind = "INSERT INTO profile_section_junction VALUES(" + profileId + ", " + section2.getId() + ");"; 
+		SqlRequest.bindSectionToProfile(requestBind);
 		
 		return Response.status(200).build();
 	}

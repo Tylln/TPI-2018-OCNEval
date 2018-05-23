@@ -97,7 +97,7 @@ public class SqlRequest {
 			}
 			
 			if (resultSetProfile.next()) {
-				profile = new Profile(1, resultSetProfile.getString("name"), resultSetProfile.getString("description"), resultSetProfile.getString("validity_date"), sections);
+				profile = new Profile(resultSetProfile.getInt("id"), resultSetProfile.getString("name"), resultSetProfile.getString("description"), resultSetProfile.getString("validity_date"), sections);
 			}
 		}
 			
@@ -161,7 +161,7 @@ public class SqlRequest {
 				ResultSet resultSet = preparedStatement.executeQuery();
 			){
 			if (resultSet.next()) {
-				section = new Section(1, resultSet.getString("name"), resultSet.getString("description"), resultSet.getString("path"), resultSet.getString("validity_date"));
+				section = new Section(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getString("path"), resultSet.getString("validity_date"));
 			}
 		}
 		
@@ -182,6 +182,19 @@ public class SqlRequest {
 	}
 	
 	public static void deleteSection(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+			
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
+	
+	public static void bindSectionToProfile(String request) throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {}
