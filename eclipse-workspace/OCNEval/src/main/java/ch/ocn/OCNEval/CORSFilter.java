@@ -1,3 +1,5 @@
+//Code récupéré sur https://stackoverflow.com/questions/28065963/how-to-handle-cors-using-jax-rs-with-jersey
+
 package ch.ocn.OCNEval;
 
 import java.io.IOException;

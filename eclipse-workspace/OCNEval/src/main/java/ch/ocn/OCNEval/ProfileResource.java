@@ -2,6 +2,7 @@ package ch.ocn.OCNEval;
 
 import javax.ws.rs.Path;
 
+
 import java.sql.SQLException;
 
 import javax.ws.rs.PathParam;
@@ -19,65 +20,92 @@ import com.google.gson.Gson;
 import ch.ocn.OCNEval.data.Profile;
 import ch.ocn.OCNEval.sql.SqlRequest;
 
+/*
+ * Lorsque l'URL d'une requête est comme suit : http://localhost:8080/OCNEval/webapi/profiles,
+ * c'est cette classe qui sera utilisée pour y répondre
+ */
 @Path("profiles")
 public class ProfileResource {
 	
+	//Constructeur par défaut
 	public ProfileResource() {
 		
 	}
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfilesJson() throws SQLException {
-		String request = "SELECT * FROM profile WHERE valid='1';";
+	
+	@GET //Lorsqu'une requête HTTP GET est effectuée à /profiles
+	@Produces(MediaType.APPLICATION_JSON) //La réponse produira un json
+	public Response getProfilesJson() throws SQLException { //Permet de récupérer tous les profils de la BDD
+		String request = "SELECT * FROM profile WHERE valid='1';"; //Récupère tous les profils valides
 		
+		//Envoi de la réponse avec tous les profils sous forme de json
 		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles(request)).build();
 	}
 	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProfiles(String profileJson) throws SQLException {
-		Gson gson = new Gson();
-		Profile profile = gson.fromJson(profileJson, Profile.class);
-		if (profile.getValidityDate().equals("")) {
-			profile.setValidityDate("NULL");
-		} else {
-			profile.setValidityDate("'" + profile.getValidityDate() + "'");
+	@POST //Lorsqu'un requête HTTP POST est effectuée à /profiles
+	@Consumes(MediaType.APPLICATION_JSON) //La réponse consomme un json
+	public Response addProfiles(String profileJson) throws SQLException { //Permet d'enregistrer un profil dans la BDD
+		Gson gson = new Gson(); //Instanciation d'un objet Gson
+		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile à partir du json envoyé par HTTP
+		if (profile.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée
+			profile.setValidityDate("NULL"); //La valeur NULL y est associée afin de pouvoir l'enregistrer dans la BDD
+		} else { //Sinon
+			profile.setValidityDate("'" + profile.getValidityDate() + "'"); //Ajout des guillemets afin de pouvoir écrire une requête SQL valide
 		}
+		//Écriture de la requête
 		String request = "INSERT INTO profile VALUES (NULL, '" + profile.getName() + "', '" + profile.getDescription() + "', " + profile.getValidityDate() + ", 1);";
-		SqlRequest.addProfile(request);
+		SqlRequest.addProfile(request); //Permet d'ajouter le profil dans la BDD
 		
-		return Response.status(200).build();
+		return Response.status(200).build(); //La réponse informe le client que tout s'est bien passé
 	}
 	
+	//Lorsqu'une requête HTTP GET est effectuée à profiles/id
 	@GET
 	@Path("{profileId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
+	@Produces(MediaType.APPLICATION_JSON) //La réponse produit un json
+	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException { //Permet de récupérer un profil bien précis de la BDD en récupérant l'ID depuis l'URL
+		//Écriture de la requête permettant de récupérer les informations du profil voulu
 		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
+		//Écriture de la requête permettant de récupérer les sections qui lui sont liés
 		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "' AND section.id = profile_section_junction.section_id AND section.valid = '1';";
 		
+		//Envoi de la réponse avec les informations sur le profil et sur toutes ses sections qu'il contient
 		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile(requestProfile, requestSections)).build();
 	}
 	
+	//Lorsqu'un requête HTTP PUT est effectuée à profiles/id
 	@PUT
 	@Path("{profileId}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException {
-		Gson gson = new Gson();
-		Profile profile = gson.fromJson(profileJson, Profile.class);
+	@Consumes(MediaType.APPLICATION_JSON) //La réponse consomme un json
+	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException { //Permet de modifier les informations d'un profil en récupérer l'ID depuis l'URL
+		Gson gson = new Gson(); //Instanciation d'un objet Gson 
+		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile à partir du json envoyé par HTTP
+		//Écriture de la requête permettant de modifier les informations du profile
 		String request = "UPDATE profile SET name = '" + profile.getName() + "', description = '" + profile.getDescription() + "', validity_date = '" + profile.getValidityDate() + "' WHERE id = '" + profileId + "';";
-		SqlRequest.modifyProfile(request);
+		SqlRequest.modifyProfile(request); //Exécution de la requête
 		
-		return Response.status(200).build();
+		return Response.status(200).build(); //La réponse informe le client que tout s'est bien passé
 	}
 	
+	//Lorsqu'une requête HTTP DELETE est effectuée à profiles/id
 	@DELETE
 	@Path("{profileId}")
-	public Response deleteProfile(@PathParam("profileId") String profileId) throws SQLException {
+	public Response deleteProfile(@PathParam("profileId") String profileId) throws SQLException { //Permet de supprimer un profile ayant pour ID celui récupéré depuis l'URL
+		//Écriture de la requête permettant de supprimer un profil
 		String request = "UPDATE profile SET valid = '0' WHERE id='" + profileId + "';";
-		SqlRequest.deleteProfile(request);
+		SqlRequest.deleteProfile(request); //Exécution de la requête
 		
-		return Response.status(200).build();
+		return Response.status(200).build(); //La réponse informe le client que tout s'est bien passé
+	}
+	
+	//Lorsqu'une requête HTTP DELETE est effectuée à profiles/idProfile/section/idSection
+	@DELETE
+	@Path("{profileId}/section/{sectionId}")
+	public Response deleteProfile(@PathParam("profileId") String profileId, @PathParam("sectionId") String sectionId) throws SQLException { //Permet de supprimer la liaison entre un profil et une section en fonction des ID récupérés dans l'URL
+		//Écriture de la requête permettant de supprimer une liaison entre un profil et une section
+		String request = "DELETE FROM profile_section_junction WHERE profile_id = '" + profileId + "' AND section_id = '" + sectionId + "';";
+		SqlRequest.unbindSectionFromProfile(request); //Exécution de la requête
+		
+		return Response.status(200).build(); //La réponse informe le client que tout s'est bien passé
 	}
 }

@@ -2644,3 +2644,151 @@
 2018-05-23 17:24:37,196 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@c4315e9{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
 2018-05-23 17:24:37,201 [Stop Help Server] INFO  org.eclipse.jetty.server.session - Stopped scavenging
 2018-05-23 17:24:37,228 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@60b9dff9{/help,null,UNAVAILABLE}
+2018-05-24 07:36:12,054 [Worker-7] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-05-24 07:36:21,256 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 07:36:21,266 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 07:36:21,271 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 07:36:21,271 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:04:03,640 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:04:04,650 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:04:04,652 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:04:04,652 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:06:05,776 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:05,777 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:06:05,779 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:05,779 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:06:45,155 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:45,156 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:06:45,158 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:45,158 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:06:53,086 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:53,087 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:06:53,088 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:06:53,088 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:09:14,554 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:09:14,555 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:09:14,557 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:09:14,558 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:12:04,779 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:12:04,780 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:12:04,781 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:12:04,782 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:13:04,531 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:13:04,533 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:13:04,537 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:13:04,537 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:15:57,727 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:15:57,728 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:15:57,730 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:15:57,731 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:16:33,002 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:16:33,003 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:16:33,005 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:16:33,006 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:17:28,247 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:17:28,249 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:17:28,250 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:17:28,251 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:17:47,809 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:17:47,811 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:17:47,812 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:17:47,813 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:18:30,149 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:18:30,150 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:18:30,152 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:18:30,152 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:18:40,862 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:18:40,863 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:18:40,865 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:18:40,866 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:19:14,232 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:14,233 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:19:14,235 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:14,236 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:19:30,270 [Start Help Server] INFO  org.eclipse.jetty.util.log - Logging initialized @6243702ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-05-24 09:19:31,020 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-21T22:27:37+01:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-05-24 09:19:31,047 [Start Help Server] INFO  org.eclipse.jetty.server.session - DefaultSessionIdManager workerName=node0
+2018-05-24 09:19:31,050 [Start Help Server] INFO  org.eclipse.jetty.server.session - No SessionScavenger set, using defaults
+2018-05-24 09:19:31,052 [Start Help Server] INFO  org.eclipse.jetty.server.session - Scavenging every 600000ms
+2018-05-24 09:19:31,086 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@48b6aa00{/help,null,AVAILABLE}
+2018-05-24 09:19:31,114 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@6e33a153{HTTP/1.1,[http/1.1]}{127.0.0.1:51107}
+2018-05-24 09:19:31,114 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started @6244547ms
+2018-05-24 09:19:38,337 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:38,338 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:19:38,340 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:38,341 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:19:51,660 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:51,661 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:19:51,663 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:19:51,664 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:20:48,119 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:20:48,120 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:20:48,122 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:20:48,122 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:21:06,562 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:06,563 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:21:06,564 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:06,565 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:21:41,643 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:41,644 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:21:41,645 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:41,645 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:21:54,835 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:54,836 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:21:54,838 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:21:54,839 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:22:04,328 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:04,329 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:22:04,331 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:04,331 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:22:06,836 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:06,837 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:22:06,838 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:06,839 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:22:14,760 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:14,761 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:22:14,763 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:14,763 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 09:22:30,000 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:30,001 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 09:22:30,002 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 09:22:30,002 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:10:53,101 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:10:53,102 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:10:53,103 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:10:53,104 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:10:59,205 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:10:59,207 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:10:59,208 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:10:59,209 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:12:09,255 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:09,256 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:12:09,257 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:09,258 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:12:13,418 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:13,419 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:12:13,421 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:13,422 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:12:24,900 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:24,901 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:12:24,902 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:12:24,903 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:13:12,994 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:13:12,995 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:13:12,996 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:13:12,997 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:14:09,948 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:14:09,948 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:14:09,950 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:14:09,950 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:14:29,516 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:14:29,517 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:14:29,518 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:14:29,519 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:15:05,801 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:15:05,801 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-05-24 11:15:05,803 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 11:15:05,803 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ryserj\eclipse-workspace\OCNEval\src\test\resources
+2018-05-24 11:17:49,086 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@6e33a153{HTTP/1.1,[http/1.1]}{127.0.0.1:0}
+2018-05-24 11:17:49,086 [Stop Help Server] INFO  org.eclipse.jetty.server.session - Stopped scavenging
+2018-05-24 11:17:49,255 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@48b6aa00{/help,null,UNAVAILABLE}

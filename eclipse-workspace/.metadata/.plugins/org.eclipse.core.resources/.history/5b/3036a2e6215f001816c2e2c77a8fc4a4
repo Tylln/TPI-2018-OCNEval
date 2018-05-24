@@ -1,0 +1,91 @@
+package ch.ocn.OCNEval;
+
+import javax.ws.rs.Path;
+
+
+import java.sql.SQLException;
+
+import javax.ws.rs.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
+
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+/*
+ * Lorsque l'URL d'une requête est comme suit : http://localhost:8080/OCNEval/webapi/profiles,
+ * c'est cette classe qui sera utilisée pour y répondre
+ */
+@Path("profiles")
+public class ProfileResource {
+	
+	//Constructeur par défaut
+	public ProfileResource() {
+		
+	}
+	
+	
+	@GET //Lorsqu'une requête HTTP GET est effectuée à /profiles
+	@Produces(MediaType.APPLICATION_JSON) //La réponse produira un json
+	public Response getProfilesJson() throws SQLException {
+		String request = "SELECT * FROM profile WHERE valid='1';"; //Récupère tous les profils valides
+		
+		//Envoie de la réponse avec tous les profils sous forme de json
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfiles(request)).build();
+	}
+	
+	@POST //Lorsqu'un requête HTTP POST est effectuée à /profiles
+	@Consumes(MediaType.APPLICATION_JSON) //La réponse consomme un json
+	public Response addProfiles(String profileJson) throws SQLException {
+		Gson gson = new Gson(); //Instanciation d'un objet Gson
+		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile selon les information du json envoyé par HTTP
+		if (profile.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée
+			profile.setValidityDate("NULL"); //La valeur NULL y est associée afin de pouvoir l'enregistrer dans la BDD
+		} else { //Sinon
+			profile.setValidityDate("'" + profile.getValidityDate() + "'"); //Ajout des guillemets afin de pouvoir écrire une requête SQL valide
+		}
+		String request = "INSERT INTO profile VALUES (NULL, '" + profile.getName() + "', '" + profile.getDescription() + "', " + profile.getValidityDate() + ", 1);";
+		SqlRequest.addProfile(request);
+		
+		return Response.status(200).build();
+	}
+	
+	@GET
+	@Path("{profileId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProfileJson(@PathParam("profileId") String profileId) throws SQLException {
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
+		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "' AND section.id = profile_section_junction.section_id AND section.valid = '1';";
+		
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestProfile(requestProfile, requestSections)).build();
+	}
+	
+	@PUT
+	@Path("{profileId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException {
+		Gson gson = new Gson();
+		Profile profile = gson.fromJson(profileJson, Profile.class);
+		String request = "UPDATE profile SET name = '" + profile.getName() + "', description = '" + profile.getDescription() + "', validity_date = '" + profile.getValidityDate() + "' WHERE id = '" + profileId + "';";
+		SqlRequest.modifyProfile(request);
+		
+		return Response.status(200).build();
+	}
+	
+	@DELETE
+	@Path("{profileId}")
+	public Response deleteProfile(@PathParam("profileId") String profileId) throws SQLException {
+		String request = "UPDATE profile SET valid = '0' WHERE id='" + profileId + "';";
+		SqlRequest.deleteProfile(request);
+		
+		return Response.status(200).build();
+	}
+}

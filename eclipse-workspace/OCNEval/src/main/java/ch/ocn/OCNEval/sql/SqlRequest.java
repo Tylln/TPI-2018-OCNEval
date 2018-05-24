@@ -206,4 +206,17 @@ public class SqlRequest {
 			preparedStatement.executeUpdate();
 		}
 	}
+	
+	public static void unbindSectionFromProfile(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+			
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
 }
