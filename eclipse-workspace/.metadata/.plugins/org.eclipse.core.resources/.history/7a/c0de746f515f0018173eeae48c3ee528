@@ -1,0 +1,18 @@
+package ch.ocn.OCNEval.controler;
+
+import ch.ocn.OCNEval.data.Person;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static void generate(String infos) {
+		Person person = getInfoPerson(infos);
+	}
+	
+	public static Person getInfoPerson(String infos) {
+		JSONObject name = new JSONObject(name);
+		String request = "SELECT * FROM person WHERE "
+	}
+}

@@ -1,0 +1,13 @@
+package ch.ocn.OCNEval.controler;
+
+import ch.ocn.OCNEval.data.Person;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static Person getInfoPerson(String info) {
+		
+	}
+}

@@ -1,0 +1,25 @@
+package ch.ocn.OCNEval.controler;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import ch.ocn.OCNEval.data.Person;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static void generate(String infos) {
+		Person person = getInfoPerson(infos);
+	}
+	
+	public static Person getInfoPerson(String infos) {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class);
+		String request = "SELECT * FROM person WHERE firstname =" + infosJson.get("firstname").toString() + ";";
+		Person person = SqlRequest.getPerson(request);
+		
+		return person;
+	}
+}

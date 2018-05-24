@@ -1,0 +1,43 @@
+package ch.ocn.OCNEval.controler;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import ch.ocn.OCNEval.data.Person;
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static void generate(String infos) throws SQLException {
+		Person person = getInfosPerson(infos);
+		List<Section> sections = getInfosProfile(infos).getSections();
+	}
+	
+	public static Person getInfosPerson(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class);
+		String request = "SELECT * FROM person WHERE firstname =" + infosJson.get("firstname").toString() + ";";
+		Person person = SqlRequest.requestPerson(request);
+		
+		return person;
+	}
+	
+	public static Profile getInfosProfile(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class);
+		String request = "SELECT id FROM profile WHERE name =" + infosJson.get("name").toString() + ";";
+		int profileId = SqlRequest.requestIdProfile(request);
+		
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
+		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "'AND section.id = profile_section_junction.section_id AND section.valid = '1';"; ;
+		Profile profile = SqlRequest.requestProfile(requestProfile, requestSections);
+	
+		return profile;
+	}
+}

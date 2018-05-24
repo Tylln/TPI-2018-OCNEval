@@ -1,0 +1,23 @@
+package ch.ocn.OCNEval.controler;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import ch.ocn.OCNEval.data.Person;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static void generate(String infos) {
+		Person person = getInfoPerson(infos);
+	}
+	
+	public static Person getInfoPerson(String infos) {
+		JsonObject jsonObject = new Gson().fromJson(infos, JsonObject.class);
+		//String request = "SELECT * FROM person WHERE name ='name';";
+		
+		return new Person();
+	}
+}
