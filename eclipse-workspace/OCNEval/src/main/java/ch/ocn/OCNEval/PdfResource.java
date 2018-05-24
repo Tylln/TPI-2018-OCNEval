@@ -1,5 +1,7 @@
 package ch.ocn.OCNEval;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.ws.rs.POST;
@@ -19,7 +21,7 @@ public class PdfResource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response generatePdf(String infos) throws SQLException {
+	public Response generatePdf(String infos) throws SQLException, IOException {
 		Pdf.generate(infos);
 		return Response.status(200).build();
 	}

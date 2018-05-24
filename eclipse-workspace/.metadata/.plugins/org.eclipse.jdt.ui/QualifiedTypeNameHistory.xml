@@ -22,11 +22,18 @@
 <fullyQualifiedTypeName name="javax.ws.rs.core.Response"/>
 <fullyQualifiedTypeName name="javax.ws.rs.POST"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Person"/>
-<fullyQualifiedTypeName name="com.google.gson.JsonObject"/>
-<fullyQualifiedTypeName name="com.google.gson.Gson"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.controler.Pdf"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.sql.SqlRequest"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Profile"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="ch.ocn.OCNEval.data.Section"/>
+<fullyQualifiedTypeName name="com.itextpdf.layout.Document"/>
+<fullyQualifiedTypeName name="com.itextpdf.kernel.pdf.PdfWriter"/>
+<fullyQualifiedTypeName name="com.itextpdf.kernel.pdf.PdfDocument"/>
+<fullyQualifiedTypeName name="com.itextpdf.layout.element.Paragraph"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="com.google.gson.JsonObject"/>
+<fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
+<fullyQualifiedTypeName name="com.itextpdf.kernel.utils.PdfMerger"/>
+<fullyQualifiedTypeName name="com.itextpdf.kernel.pdf.PdfReader"/>
 </qualifiedTypeNameHistroy>

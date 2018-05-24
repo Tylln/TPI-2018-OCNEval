@@ -1,10 +1,23 @@
 package ch.ocn.OCNEval.controler;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
+
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.itextpdf.io.font.FontConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.utils.PdfMerger;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
 
 import ch.ocn.OCNEval.data.Person;
 import ch.ocn.OCNEval.data.Profile;
@@ -16,7 +29,7 @@ public class Pdf {
 		
 	}
 	
-	public static void generate(String infos) throws SQLException {
+	public static void generate(String infos) throws SQLException, IOException {
 		Person person = getInfosPerson(infos);
 		List<Section> sections = getInfosProfile(infos).getSections();
 	}

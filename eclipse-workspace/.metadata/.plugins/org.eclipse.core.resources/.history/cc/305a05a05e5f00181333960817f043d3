@@ -1,0 +1,75 @@
+package ch.ocn.OCNEval.controler;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.itextpdf.io.font.FontConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
+
+import ch.ocn.OCNEval.data.Person;
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+public class Pdf {
+	public Pdf() {
+		
+	}
+	
+	public static void generate(String infos) throws SQLException, IOException {
+		Person person = getInfosPerson(infos);
+		List<Section> sections = getInfosProfile(infos).getSections();
+		
+		PdfWriter writer = new PdfWriter("U:\\test.pdf");
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf);
+		PdfFont font = PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
+		document.add(new Paragraph("Informations sur la personne"));
+		com.itextpdf.layout.element.List list = new com.itextpdf.layout.element.List()
+	            .setSymbolIndent(12)
+	            .setListSymbol("\u2022")
+	            .setFont(font);
+	        list.add(new ListItem(person.getFirstname() + " " + person.getName()))
+	            .add(new ListItem(person.getSector()))
+	            .add(new ListItem(person.getResponsable()))
+	            .add(new ListItem(person.getFunction()))
+	            .add(new ListItem(person.getDateFunction()))
+	            .add(new ListItem(person.getLanguage()));
+	    if (person.getValidityDate() != "NULL") {
+	    	list.add(new ListItem(person.getValidityDate()));
+	    }
+	    document.add(list);
+		document.close();
+	}
+	
+	public static Person getInfosPerson(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class);
+		String request = "SELECT * FROM person WHERE firstname =" + infosJson.get("firstname").toString() + ";";
+		Person person = SqlRequest.requestPerson(request);
+		
+		return person;
+	}
+	
+	public static Profile getInfosProfile(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class);
+		String request = "SELECT id FROM profile WHERE name =" + infosJson.get("name").toString() + ";";
+		int profileId = SqlRequest.requestIdProfile(request);
+		
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
+		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "'AND section.id = profile_section_junction.section_id AND section.valid = '1';"; ;
+		Profile profile = SqlRequest.requestProfile(requestProfile, requestSections);
+	
+		return profile;
+	}
+}
