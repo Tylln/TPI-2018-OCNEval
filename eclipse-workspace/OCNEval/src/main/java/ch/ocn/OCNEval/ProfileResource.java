@@ -43,7 +43,7 @@ public class ProfileResource {
 	
 	@POST //Lorsqu'un requête HTTP POST est effectuée à /profiles
 	@Consumes(MediaType.APPLICATION_JSON) //La réponse consomme un json
-	public Response addProfiles(String profileJson) throws SQLException { //Permet d'enregistrer un profil dans la BDD
+	public Response addProfile(String profileJson) throws SQLException { //Permet d'enregistrer un profil dans la BDD
 		Gson gson = new Gson(); //Instanciation d'un objet Gson
 		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile à partir du json envoyé par HTTP
 		if (profile.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée

@@ -228,6 +228,19 @@ public class SqlRequest {
 		return section;
 	}
 	
+	public static void addSection(String request) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {}
+		
+		try (
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement preparedStatement = connection.prepareStatement(request);	
+		){
+			preparedStatement.executeUpdate();
+		}
+	}
+	
 	public static void modifySection(String request) throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
+import ch.ocn.OCNEval.data.Profile;
 import ch.ocn.OCNEval.data.Section;
 import ch.ocn.OCNEval.sql.SqlRequest;
 
@@ -59,6 +60,22 @@ public class SectionResource {
 	public Response deleteSection(@PathParam("sectionId") String sectionId) throws SQLException {
 		String request = "UPDATE section SET valid = '0' WHERE id ='" + sectionId + "';";
 		SqlRequest.deleteSection(request);
+		
+		return Response.status(200).build();
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addSection(String sectionJson) throws SQLException {
+		Gson gson = new Gson();
+		Section section = gson.fromJson(sectionJson, Section.class);
+		if (section.getValidityDate().equals("")) {
+			section.setValidityDate("NULL");
+		} else {
+			section.setValidityDate("'" + section.getValidityDate() + "'");
+		}
+		String request = "INSERT INTO section VALUES (NULL, '" + section.getName() + "', '" + section.getDescription() + "', '" + section.getPath() + "', "+ section.getValidityDate() + ", 1);";
+		SqlRequest.addSection(request);
 		
 		return Response.status(200).build();
 	}
