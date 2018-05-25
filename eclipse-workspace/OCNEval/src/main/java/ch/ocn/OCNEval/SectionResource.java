@@ -49,7 +49,7 @@ public class SectionResource {
 	public Response modifySection(@PathParam("sectionId") String sectionId, String sectionJson) throws SQLException {
 		Gson gson = new Gson();
 		Section section = gson.fromJson(sectionJson, Section.class);
-		if (section.getValidityDate() == null) {
+		if (section.getValidityDate().equals("")) {
 			section.setValidityDate("NULL");
 		} else {
 			section.setValidityDate("'" + section.getValidityDate() + "'");
