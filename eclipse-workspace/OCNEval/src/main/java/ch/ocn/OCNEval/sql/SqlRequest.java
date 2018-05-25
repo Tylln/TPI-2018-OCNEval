@@ -56,6 +56,9 @@ public class SqlRequest {
 			){
 				preparedStatementTruncate.executeUpdate();
 				for (i = 0; i < staff.length; i++) {
+					if (staff[i].getValidityDate() != null) {
+						staff[i].setValidityDate("'" + staff[i].getValidityDate() + "'");
+					}
 					PreparedStatement preparedStatementSave = connection.prepareStatement("INSERT INTO person VALUES (" + staff[i].getId() + ", '" + staff[i].getFirstname() + "', '" + staff[i].getName() + "', '" + staff[i].getSector() + "', '" + staff[i].getResponsable() + "', '" + staff[i].getFunction() + "', '" + staff[i].getDateFunction() + "', '" + staff[i].getLanguage() + "', " + staff[i].getValidityDate() + ");");
 					preparedStatementSave.executeUpdate();
 				}
