@@ -46,7 +46,7 @@ public class ProfileResource {
 	public Response addProfile(String profileJson) throws SQLException { //Permet d'enregistrer un profil dans la BDD
 		Gson gson = new Gson(); //Instanciation d'un objet Gson
 		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile à partir du json envoyé par HTTP
-		if (profile.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée
+		if (profile.getValidityDate() == null) { //Si la date de validité n'est pas renseignée
 			profile.setValidityDate("NULL"); //La valeur NULL y est associée afin de pouvoir l'enregistrer dans la BDD
 		} else { //Sinon
 			profile.setValidityDate("'" + profile.getValidityDate() + "'"); //Ajout des guillemets afin de pouvoir écrire une requête SQL valide
@@ -79,6 +79,11 @@ public class ProfileResource {
 	public Response modifyProfile(@PathParam("profileId") String profileId, String profileJson) throws SQLException { //Permet de modifier les informations d'un profil en récupérer l'ID depuis l'URL
 		Gson gson = new Gson(); //Instanciation d'un objet Gson 
 		Profile profile = gson.fromJson(profileJson, Profile.class); //Création d'un objet Profile à partir du json envoyé par HTTP
+		if (profile.getValidityDate() == null) { //Si la date de validité n'est pas renseignée
+			profile.setValidityDate("NULL"); //La valeur NULL y est associée afin de pouvoir l'enregistrer dans la BDD
+		} else { //Sinon
+			profile.setValidityDate("'" + profile.getValidityDate() + "'"); //Ajout des guillemets afin de pouvoir écrire une requête SQL valide
+		}
 		//Écriture de la requête permettant de modifier les informations du profile
 		String request = "UPDATE profile SET name = '" + profile.getName() + "', description = '" + profile.getDescription() + "', validity_date = '" + profile.getValidityDate() + "' WHERE id = '" + profileId + "';";
 		SqlRequest.modifyProfile(request); //Exécution de la requête

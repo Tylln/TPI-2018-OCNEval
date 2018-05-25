@@ -32,6 +32,28 @@ public class Pdf {
 	public static void generate(String infos) throws SQLException, IOException {
 		Person person = getInfosPerson(infos);
 		List<Section> sections = getInfosProfile(infos).getSections();
+		String dest = "U:\\" + person.getFirstname() + " " + person.getName() + ".pdf";
+		
+		//Code récupéré : https://developers.itextpdf.com/content/itext-7-jump-start-tutorial/chapter-6-reusing-existing-pdf-documents
+		PdfDocument pdf = new PdfDocument(new PdfWriter(dest));
+		Document document = new Document(pdf);
+		document.add(new Paragraph(person.getFirstname() + " " + person.getName()));
+		document.add(new Paragraph(person.getFunction()));
+		document.add(new Paragraph(person.getDateFunction()));
+		document.add(new Paragraph(person.getSector()));
+		document.add(new Paragraph(person.getResponsable()));
+		document.add(new Paragraph(person.getLanguage()));
+		PdfMerger merger = new PdfMerger(pdf);
+		//Add pages from the first document
+		for (int i = 0; i < sections.size(); i++) {
+			PdfDocument sourcePdf = new PdfDocument(new PdfReader(sections.get(i).getPath()));
+			merger.merge(sourcePdf, 1, sourcePdf.getNumberOfPages());
+			sourcePdf.close();
+		}
+		// merge and close
+		merger.close();
+		pdf.close();
+		document.close();
 	}
 	
 	public static Person getInfosPerson(String infos) throws SQLException {

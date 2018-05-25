@@ -49,7 +49,12 @@ public class SectionResource {
 	public Response modifySection(@PathParam("sectionId") String sectionId, String sectionJson) throws SQLException {
 		Gson gson = new Gson();
 		Section section = gson.fromJson(sectionJson, Section.class);
-		String request = "UPDATE section SET name = '" + section.getName() + "', description = '" + section.getDescription() + "', validity_date = '" + section.getValidityDate() + "' WHERE id = '" + sectionId + "' AND valid = '1';";
+		if (section.getValidityDate() == null) {
+			section.setValidityDate("NULL");
+		} else {
+			section.setValidityDate("'" + section.getValidityDate() + "'");
+		}
+		String request = "UPDATE section SET name = '" + section.getName() + "', description = '" + section.getDescription() + "', path = '" + section.getPath() + "', validity_date = " + section.getValidityDate() + " WHERE id = '" + sectionId + "';";
 		SqlRequest.modifySection(request);
 		
 		return Response.status(200).build();
