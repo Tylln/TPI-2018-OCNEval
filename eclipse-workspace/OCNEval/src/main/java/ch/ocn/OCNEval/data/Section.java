@@ -1,5 +1,6 @@
 package ch.ocn.OCNEval.data;
 
+//Modèle Section
 public class Section {
 	int id;
 	String name;

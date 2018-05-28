@@ -2,6 +2,7 @@ package ch.ocn.OCNEval.data;
 
 import java.util.List;
 
+//Modèle Profile
 public class Profile {
 	private int id;
 	private String name;

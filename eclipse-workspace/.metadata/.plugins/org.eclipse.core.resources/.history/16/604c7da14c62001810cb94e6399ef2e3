@@ -1,0 +1,86 @@
+package ch.ocn.OCNEval.pdf;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.utils.PdfMerger;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import ch.ocn.OCNEval.data.Person;
+import ch.ocn.OCNEval.data.Profile;
+import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+public class Pdf {
+	
+	//Constructeur par défaut
+	public Pdf() {
+		
+	}
+	
+	//Méthode permettant de générer un PDF
+	public static void generate(String infos) throws SQLException, IOException {
+		Person person = getInfosPerson(infos);
+		List<Section> sections = getInfosProfile(infos).getSections();
+		String dest = "U:\\" + person.getFirstname() + " " + person.getName() + ".pdf";
+		
+		//Code récupéré : https://developers.itextpdf.com/content/itext-7-jump-start-tutorial/chapter-6-reusing-existing-pdf-documents
+		PdfDocument pdf = new PdfDocument(new PdfWriter(dest));
+		Document document = new Document(pdf);
+		document.add(new Paragraph(person.getFirstname() + " " + person.getName()));
+		document.add(new Paragraph(person.getFunction()));
+		document.add(new Paragraph(person.getDateFunction()));
+		document.add(new Paragraph(person.getSector()));
+		document.add(new Paragraph(person.getResponsable()));
+		document.add(new Paragraph(person.getLanguage()));
+		PdfMerger merger = new PdfMerger(pdf);
+		//Add pages from the first document
+		for (int i = 0; i < sections.size(); i++) {
+			PdfDocument sourcePdf = new PdfDocument(new PdfReader(sections.get(i).getPath()));
+			merger.merge(sourcePdf, 1, sourcePdf.getNumberOfPages());
+			sourcePdf.close();
+		}
+		// merge and close
+		merger.close();
+		pdf.close();
+		document.close();
+	}
+	
+	//Méthode permettant de récupérer les infos de la personne à partir du prénom
+	public static Person getInfosPerson(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class); //Création d'un objet JSON
+		//Création de la requête SQL permettant de récupérer les informations de la personne à partir du prénom
+		String request = "SELECT * FROM person WHERE firstname =" + infosJson.get("firstname").toString() + ";";
+		//Création d'un objet Person selon les données renvoyées depuis la BDD
+		Person person = SqlRequest.requestPerson(request);
+		
+		return person; //Retourne l'objet Person
+	}
+	
+	//Méthode permettant de récupérer les infos du profil à partir du nom
+	public static Profile getInfosProfile(String infos) throws SQLException {
+		JsonObject infosJson = new Gson().fromJson(infos, JsonObject.class); //Création d'un objet JSON
+		//Création de la requête SQL permettant de récupérer l'id du profil à partir du nom
+		String request = "SELECT id FROM profile WHERE name =" + infosJson.get("name").toString() + ";";
+		//Récupération de l'id du profile
+		int profileId = SqlRequest.requestIdProfile(request);
+		
+		//Création de la requête permettant de récupérer les informations du profil
+		String requestProfile = "SELECT * FROM profile WHERE id='" + profileId + "' AND valid = '1';";
+		//Création de la requête permettant de récupérer les sections liées au profil
+		String requestSections = "SELECT section.* FROM section, profile_section_junction WHERE profile_section_junction.profile_id='" + profileId + "'AND section.id = profile_section_junction.section_id AND section.valid = '1';"; ;
+		//Création d'un profil
+		Profile profile = SqlRequest.requestProfile(requestProfile, requestSections);
+	
+		return profile; //Retourne le profil
+	}
+}

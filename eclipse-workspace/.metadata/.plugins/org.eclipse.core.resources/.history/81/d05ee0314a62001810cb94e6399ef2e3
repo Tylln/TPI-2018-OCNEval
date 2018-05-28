@@ -1,0 +1,142 @@
+package ch.ocn.OCNEval;
+
+import java.sql.SQLException;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
+
+import ch.ocn.OCNEval.data.Section;
+import ch.ocn.OCNEval.sql.SqlRequest;
+
+//Si l'URL est webapi/sections, cette classe sera utilisée
+@Path("sections")
+public class SectionResource {
+	
+	//Constructeur par défaut
+	public SectionResource() {
+		
+	}
+	
+	/*
+	 * Méthode permettant de récupérer toutes les sections de la BDD
+	 * Cette méthode sera exécutée en cas de méthode GET et produit un JSON
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSectionsJson() throws SQLException {
+		String request = "SELECT * FROM section WHERE valid='1';"; //Création de la requête SQL
+		
+		//Renvoie une réponse HTTP contenant la liste des sections
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestSections(request)).build(); 
+	}
+	/*
+	 * Méthode permettant de récupérer une section particulière de la BDD
+	 * Cette méthode sera exécutée en cas de méthode GET 
+	 * Lorsque l'URL est webapi/sections/[id de la section]
+	 * Produit un JSON
+	 */
+	@GET
+	@Path("{sectionId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSectionJson(@PathParam("sectionId") String sectionId) throws SQLException {
+		String request = "SELECT * FROM section WHERE id='" + sectionId + "' AND valid = '1';"; //Création de la requête SQL
+		
+		//Passe la requête vers la classe JDBC et envoie une réponse HTTP contenant les informations de la section
+		return Response.status(Response.Status.OK).entity(SqlRequest.requestSection(request)).build();
+	}
+	
+	/*
+	 * Méthode permettant de modifier une section
+	 * Cette méthode sera exécutée en cas de méthode PUT
+	 * Lorsque l'URL est webapi/sections/[id de la section]
+	 * Consomme un JSON
+	 */
+	@PUT
+	@Path("{sectionId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modifySection(@PathParam("sectionId") String sectionId, String sectionJson) throws SQLException {
+		Gson gson = new Gson(); //Instancie un objet Gson
+		Section section = gson.fromJson(sectionJson, Section.class); //Permet de créer un objet Section avec le JSON
+		if (section.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée
+			section.setValidityDate("NULL"); //Alors sa valeur est NULL afin d'avoir une requête SQL valide
+		} else { //Sinon la date de validité n'est pas vide
+			section.setValidityDate("'" + section.getValidityDate() + "'"); //On ajoute des guillemet afin d'avoir une requête SQL valide
+		}
+		//Création de la requête SQL
+		String request = "UPDATE section SET name = '" + section.getName() + "', description = '" + section.getDescription() + "', path = '" + section.getPath() + "', validity_date = " + section.getValidityDate() + " WHERE id = '" + sectionId + "';";
+		SqlRequest.modifySection(request); //Transmet la requête vers la classe JDBC
+		
+		//Envoie une réponse HTTP
+		return Response.status(200).build();
+	}
+	
+	/*
+	 * Méthode permettant de supprimer une section
+	 * Cette méthode sera exécutée en cas de méthode DELETE
+	 * Lorsque l'URL est webapi/sections/[id de la section]
+	 */
+	@DELETE
+	@Path("{sectionId}")
+	public Response deleteSection(@PathParam("sectionId") String sectionId) throws SQLException {
+		//Création de la requête SQL
+		String request = "UPDATE section SET valid = '0' WHERE id ='" + sectionId + "';";
+		SqlRequest.deleteSection(request); //Transmet la requête vers la classe JDBC
+		
+		//Envoie une réponse HTTP
+		return Response.status(200).build();
+	}
+	
+	/*
+	 * Méthode permettant d'ajouter une section
+	 * Cettte méthode sera exécuté en cas de méthode POST
+	 * Lorsque l'URL est webapi/sections
+	 * Produit un JSON
+	 */
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addSection(String sectionJson) throws SQLException {
+		Gson gson = new Gson(); //Instancie un objet Gson
+		Section section = gson.fromJson(sectionJson, Section.class); //Permet de créer un objet Section avec le JSON
+		if (section.getValidityDate().equals("")) { //Si la date de validité n'est pas renseignée
+			section.setValidityDate("NULL"); //Alors sa valeur est NULL afin d'avoir une requête SQL valide
+		} else { //Sinon la date de validité n'est pas vide
+			section.setValidityDate("'" + section.getValidityDate() + "'"); //On ajoute des guillemet afin d'avoir une requête SQL valide
+		}
+		//Création de la requête SQL
+		String request = "INSERT INTO section VALUES (NULL, '" + section.getName() + "', '" + section.getDescription() + "', '" + section.getPath() + "', "+ section.getValidityDate() + ", 1);";
+		SqlRequest.addSection(request); //Transmet la requête vers la classe JDBC
+		
+		//Envoie une réponse HTTP
+		return Response.status(200).build();
+	}
+	
+	/*
+	 * Méthode permettant d'ajouter une section à un profil
+	 * Cettte méthode sera exécuté en cas de méthode POST
+	 * Lorsque l'URL est webapi/sections/[id du profil]
+
+	 */
+	@POST
+	@Path("{profileId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addSectionToProfile(@PathParam("profileId") String profileId, String sectionNameJson) throws SQLException {
+		Gson gson = new Gson();
+		Section section = gson.fromJson(sectionNameJson, Section.class);
+		String requestSectionId = "SELECT * FROM section WHERE name='" + section.getName() + "';";
+		Section section2 = SqlRequest.requestSection(requestSectionId);
+		String requestBind = "INSERT INTO profile_section_junction VALUES(" + profileId + ", " + section2.getId() + ");"; 
+		SqlRequest.bindSectionToProfile(requestBind);
+		
+		return Response.status(200).build();
+	}
+}

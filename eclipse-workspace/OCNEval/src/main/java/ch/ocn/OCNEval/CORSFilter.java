@@ -8,6 +8,7 @@ import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
 
+//Cette classe rajoute des en-têtes aux requêtes HTTP d'une autre origine afin de permettre au serveur de les accepter
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
 

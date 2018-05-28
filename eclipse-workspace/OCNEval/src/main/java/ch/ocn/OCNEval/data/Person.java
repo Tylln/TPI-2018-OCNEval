@@ -1,5 +1,6 @@
 package ch.ocn.OCNEval.data;
 
+//Modèle Person
 public class Person {
 	private int id;
 	private String firstname;
